@@ -1,0 +1,2 @@
+# TODO: Do not work..
+FILE(COPY . DESTINATION "${CMAKE_BINARY_DIR}")
