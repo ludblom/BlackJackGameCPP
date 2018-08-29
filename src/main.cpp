@@ -83,7 +83,7 @@ main()
   int numShuffles = 20;
 
   // Create a deck with enough memory
-  Card c[52*numDecks];
+  vector<Card> c;
 
   static int cardsCreated = 0;
   
