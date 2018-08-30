@@ -1,5 +1,6 @@
+/*http://www.cplusplus.com/reference/algorithm/random_shuffle/*/
+
 #include <iostream>
-#include <string>
 #include <algorithm>
 #include <vector>
 
@@ -44,48 +45,27 @@ public:
   }
 };
 
+// Shuffle deck
 void
-shuffleDeck(Card *c, int shuffles, int decks)
+shuffleDeck(vector<Card> *c, int shuffles)
 {
-  // A vector, tmp deck and a card counter
-  vector<int> pos;
-  Card tmpCard[52*decks];
-  int cardPlace = 0;
-
-  // Create a vector deck
-  for(int i = 0; i < 52*decks; i++) pos.push_back(i);
-
-  // Shuffle the deck
   for(int s = 0; s < shuffles; s++)
     {
-      random_shuffle(pos.begin(), pos.end());
-    }
-
-  // Place the card c and place into tmpCard[cardPlace]
-  for(vector<int>::iterator it=pos.begin(); it != pos.end(); ++it)
-    {
-      Card card (c[*it].getValue(), c[*it].getSuit());
-      tmpCard[cardPlace] = card;
-      ++cardPlace;
-    }
-
-  for(int i = 0; i < 52*decks; i++)
-    {
-      c[i].setNewVals(tmpCard[i].getValue(), tmpCard[i].getSuit());
+      // Generate a non-fixed seed to the random function
+      srand(time(NULL));
+      random_shuffle(c->begin(), c->end());
     }
 }
 
 int
 main()
 {
-  // TODO: Should be as input instead
-  int numDecks = 1;
-  int numShuffles = 20;
+  //TODO: Later input from main
+  int numDecks = 10;
+  int numShuffles = 9;
 
-  // Create a deck with enough memory
+  // Create a deck vector
   vector<Card> c;
-
-  static int cardsCreated = 0;
   
   // Select card's value
   for(int d = 0; d < numDecks; d++)
@@ -96,16 +76,20 @@ main()
 	  for(int s = 0; s < 4; s++)
 	    {
 	      Card card(v, s);
-	      c[cardsCreated] = card;
-	      ++cardsCreated;
+	      c.push_back(card);
 	    }
 	}
     }
 
   // Shuffle the deck
-  shuffleDeck(c, numShuffles, numDecks);
+  shuffleDeck(&c, numShuffles);
+
+  for(int i = 0; i < 52; i++)
+    {
+      Card aCard = c.front();
+      cout << aCard.getValue() << "\t" << aCard.getSuit() << endl;
+      c.erase(c.begin());
+    }
 
   return 0;
 }
-
-
