@@ -49,6 +49,7 @@ printOutDealer(vector<Card> dealer)
     {
       convert((*i).getValue(), (*i).getSuit());
     }
+  cout << "X   X" << endl;
   cout << "**************************" << endl;
 }
 
