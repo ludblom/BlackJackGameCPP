@@ -3,15 +3,20 @@
 #include <vector>
 
 #include "deck.h"
+#include "gameLogic.h"
 
 using namespace std;
 
 int
-main()
+main(int argc, char *argv[])
 {
   vector<Card> c;
+  
+  // createDeck([VAR], [DECK], [SHUFFLES])
   createDeck(&c, 6, 20);
-  Card aCard = drawCard(&c);
-  cout << aCard.getValue() << endl;
+
+  // Play
+  startGame(&c, 4);
+  
   return 0;
 }

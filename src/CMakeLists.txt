@@ -4,5 +4,5 @@ project(src)
 
 message("Processing ${CMAKE_CURRENT_SOURCE_DIR}")
 
-set(TARGET src)
-add_executable(${TARGET} main.cpp deck.cpp)
+set(TARGET game)
+add_executable(${TARGET} main.cpp deck.cpp gameLogic.cpp terminalPrinting.cpp)

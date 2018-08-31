@@ -20,5 +20,6 @@ public:
 };
 
 void createDeck(std::vector<Card> *c, int, int);
+void drawXCards(std::vector<Card> *c, std::vector<Card> *player, int drawNum);
 Card drawCard(std::vector<Card> *c);
 #endif

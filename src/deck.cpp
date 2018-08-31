@@ -30,13 +30,24 @@ Card::getSuit()
   return suit;
 }
 
-// Draw card
+// Draw one card
 Card
 drawCard(vector<Card> *c)
 {
   Card aCard = c->front();
   c->erase(c->begin());
   return aCard;
+}
+
+// Draw x cards and place in hand
+void
+drawXCards(vector<Card> *c, vector<Card> *player, int drawNum)
+{
+  for(int i = 0; i < drawNum; i++)
+    {
+      Card aCard = drawCard(c);
+      player->push_back(aCard);
+    }
 }
 
 // Shuffle deck
